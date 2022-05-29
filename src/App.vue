@@ -3,5 +3,8 @@ const el = ref < HTMLCanvasElement > ()
 </script>
 
 <template>
-  <canvas ref="el" />
+  <div>
+    <canvas ref="el" />
+    <div>dnfsbfihdj</div>
+  </div>
 </template>

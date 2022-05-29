@@ -1,9 +1,6 @@
 <script setup lang="ts">
 const el = ref < HTMLCanvasElement > ()
-onMounted(()=> {
-  
-
-})
+onMounted(() => {})
 </script>
 
 <template>

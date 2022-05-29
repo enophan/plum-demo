@@ -18,5 +18,22 @@ the `<canvas>` element only has `width` and `height`, both of two attributes.
 
 The id attribute is not personal attribute of the `<canvas>` , it is one of the global HTML attributes and any HTML elements all can apply it.
 
+`getContext()`: this function is used to obtain the rendering context and drawing function of the `<canvas>` element.It takes one parameter, the type of context, like 2d and 3d.这个函数获取`<canvas>`的渲染内容和绘画功能。函数的参数是上下文类型，比如2d和3d。
+
+In js
+
+```js
+const canvas = document.getElementById('tutorial')
+const ctx = canvas.getContext('2d')
+```
+
+In vue
+
+```typescript
+const el = ref<HTMLCanvasElement>()
+const canvas = el.value
+const ctx = canvas.getContext('2d')
+```
+
 
 

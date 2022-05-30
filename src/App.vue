@@ -1,6 +1,9 @@
 <script setup lang="ts">
 const el = ref < HTMLCanvasElement > ()
-onMounted(() => {})
+onMounted(() => {
+  const canvas = el.value!
+  const ctx = canvas.getContext('2d')!
+})
 </script>
 
 <template>

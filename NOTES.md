@@ -35,5 +35,13 @@ const canvas = el.value
 const ctx = canvas.getContext('2d')
 ```
 
-
+```vue
+<script setup lang="ts">
+const el = ref < HTMLCanvasElement > ()
+onMounted(() => {
+  const canvas = el.value!
+  const ctx = canvas.getContext('2d')!
+})
+</script>
+```
 

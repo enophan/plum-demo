@@ -45,3 +45,11 @@ onMounted(() => {
 </script>
 ```
 
+## canvas
+
+```js
+ctx.beginPath() // Start a new path
+ctx.moveTo(30, 50) // Move the pen to (30, 50)
+ctx.lineTo(150, 100) // Draw a line to (150, 100)
+ctx.stroke() // render the line
+```

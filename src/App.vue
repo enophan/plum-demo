@@ -1,11 +1,12 @@
 <script setup lang="ts">
-const el = ref < HTMLCanvasElement > ()
+const el = $ref < HTMLCanvasElement > ()
+const ctx = $computed(() => el!.getContext('2d')!)
 
 function init() {
-  const canvas = el.value!
-  const ctx = canvas.getContext('2d')!
+  ctx.strokeStyle = '#fff' // style shouold on the top
+}
 
-  ctx.strokeStyle = '#fff' // style on the top
+function Line(x1: number, y1: number, x2: number, y2: number) {
   ctx.beginPath() // Start a new path
   ctx.moveTo(30, 50) // Move the pen to (30, 50)
   ctx.lineTo(150, 100) // Draw a line to (150, 100)

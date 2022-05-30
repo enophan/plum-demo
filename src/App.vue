@@ -13,6 +13,8 @@ function Line(x1: number, y1: number, x2: number, y2: number) {
   ctx.stroke() // render the line
 }
 
+Line(1, 2, 3, 4)
+
 onMounted(() => {
   init()
 })

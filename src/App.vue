@@ -2,6 +2,16 @@
 const el = $ref < HTMLCanvasElement > ()
 const ctx = $computed(() => el!.getContext('2d')!)
 
+interface Point {
+  x: number
+  y: number
+}
+interface Branch {
+  start: Point
+  length: number
+  theta: number
+}
+
 function init() {
   ctx.strokeStyle = '#fff' // style shouold on the top
 }

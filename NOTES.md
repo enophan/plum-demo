@@ -90,3 +90,70 @@ const endPoint: Point = {
 ```
 
 让y加的是负的，也就是减去`lenth * Math.cos(angle)`
+
+## 接下来生成第二根树枝
+
+当然是递归，但因为我现在还没到写递归能一气呵成的地步，所以先一步一步来。
+
+```typescript
+function init() {
+  ctx.strokeStyle = '#fff'
+  const b: Branch = {
+    startPint: { x: WIDTH / 2, y: HEIGHT },
+    length: 100,
+    angle: Math.PI / 24,
+  }
+  stratAndEnd(b)
+}
+```
+
+这是第一根枝，那么第二根枝就应该这样
+
+```typescript
+function init() {
+  ctx.strokeStyle = '#fff'
+  const b: Branch = {
+    startPint: { x: WIDTH / 2, y: HEIGHT },
+    length: 100,
+    angle: Math.PI / 24,
+  }
+  stratAndEnd(b)
+  const leftBranch: Branch = {
+    startPint: getEndBranch(b),
+    length: 100,
+    angle: Math.PI / 12,
+  }
+  stratAndEnd(leftBranch)
+}
+```
+
+重构一下
+
+```typescript
+function init() {
+  ctx.strokeStyle = '#fff'
+  const b: Branch = {
+    startPint: { x: WIDTH / 2, y: HEIGHT },
+    length: 100,
+    angle: Math.PI / 24,
+  }
+  drawBranch(b)
+  step(b)
+}
+
+function step(preBranch: Branch) {
+  const startPint: Point = getEndPoint(preBranch)
+  const leftBranch: Branch = {
+    startPint,
+    length: 100,
+    angle: preBranch.angle + 0.1,
+  }
+  const rightBranch: Branch = {
+    startPint,
+    length: 100,
+    angle: preBranch.angle - 0.1,
+  }
+  drawBranch(leftBranch)
+  drawBranch(rightBranch)
+}
+```

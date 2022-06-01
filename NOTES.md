@@ -157,3 +157,39 @@ function step(preBranch: Branch) {
   drawBranch(rightBranch)
 }
 ```
+
+开始写递归
+
+```typescript
+function init() {
+  ctx.strokeStyle = '#fff'
+  const b: Branch = {
+    startPint: { x: WIDTH / 2, y: HEIGHT },
+    length: 10,
+    angle: 0,
+  }
+  step(b)
+}
+
+function step(preBranch: Branch) {
+  const startPint: Point = getEndPoint(preBranch)
+  drawBranch(preBranch)
+  if (Math.random() < 0.6) {
+    step({
+      startPint,
+      length: preBranch.length,
+      angle: preBranch.angle + 0.2,
+    })
+  }
+  if (Math.random() < 0.6) {
+    step({
+      startPint,
+      length: preBranch.length,
+      angle: preBranch.angle - 0.2,
+    })
+  }
+}
+```
+
+## 写动画
+

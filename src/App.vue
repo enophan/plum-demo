@@ -21,7 +21,7 @@ function init() {
   const b: Branch = {
     startPint: { x: WIDTH / 2, y: HEIGHT },
     lenth: 100,
-    angle: -Math.PI / 2,
+    angle: Math.PI / 6,
   }
   stratAndEnd(b)
 }
@@ -36,8 +36,8 @@ function growingBranch(p1: Point, p2: Point) {
 function stratAndEnd(b: Branch) {
   const { startPint, lenth, angle } = b
   const endPoint: Point = {
-    x: startPint.x + lenth * Math.cos(angle),
-    y: startPint.y + lenth * Math.sin(angle),
+    x: startPint.x + lenth * Math.sin(angle),
+    y: startPint.y - lenth * Math.cos(angle),
   }
   growingBranch(startPint, endPoint)
 }
@@ -49,7 +49,7 @@ onMounted(() => {
 
 <template>
   <div flex="~" items-center justify-center>
-    <canvas ref="el" width="500" height="500" border />
+    <canvas ref="el" width="500" height="500" border m-100px />
   </div>
 </template>
 

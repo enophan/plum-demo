@@ -2,18 +2,8 @@
 const el = $ref < HTMLCanvasElement > ()
 const ctx = $computed(() => el!.getContext('2d')!)
 
-interface Point {
-  x: number
-  y: number
-}
-interface Branch {
-  start: Point
-  length: number
-  theta: number
-}
-
 function init() {
-  ctx.strokeStyle = '#fff' // style shouold on the top
+  ctx.strokeStyle = '#fff' // stghyle shouold on the top
 }
 
 function Line(x1: number, y1: number, x2: number, y2: number) {
@@ -22,8 +12,6 @@ function Line(x1: number, y1: number, x2: number, y2: number) {
   ctx.lineTo(150, 100) // Draw a line to (150, 100)
   ctx.stroke() // render the line
 }
-
-Line(1, 2, 3, 4)
 
 onMounted(() => {
   init()

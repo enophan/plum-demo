@@ -57,3 +57,36 @@ ctx.stroke() // render the line
 `<canvas>` element's origin on the top-left, and the x-axis is from top-left to top-rigth, the y-axis is from top-left to bottom-left.
 
 For canvas the tree's branch is from one point to another point, but actually the growing tree starts at the end of the previous branch, offsets an angle, and then grows to another location.
+
+```typescript
+interface Branch {
+  startPint: Point
+  lenth: number
+  angle: number
+}
+```
+
+在`Branch`里定义的`angle`在canvas里并不具体的表示某个夹角，只是一个参数而已。最终会加上`lenth * Math.sin(angle)`，当然也可以减去。具体看要从哪里生长这棵树，要是从底部生长，
+
+<img src="https://enophan-picgo-core.oss-cn-hangzhou.aliyuncs.com/enophan.github.io/Snipaste_2022-06-01_15-35-00.jpg" style="zoom:50%;" />
+
+按照这个非常规的坐标系，为了防止超出画布（白框），就需要考虑`angle`的正负和`lenth * Math.sin(angle)`、`lenth * Math.cos(angle)`正负了。反正最后的结果要让加在y坐标上的为负数，加在x上的正负均可，负数则向右偏移，整数则向左偏移。不过，有些人偏向具象思维，那我们假定
+
+<img src="https://enophan-picgo-core.oss-cn-hangzhou.aliyuncs.com/enophan.github.io/Snipaste_2022-06-01_15-44-23.jpg" style="zoom:50%;" />
+
+这个θ就是`angle`，这也符合正常思维。那么就应该这样
+
+```typescript
+const b: Branch = {
+    startPint: { x: WIDTH / 2, y: HEIGHT },
+    lenth: 100,
+    angle: Math.PI / 6,
+  }
+
+const endPoint: Point = {
+    x: startPint.x + lenth * Math.sin(angle),
+    y: startPint.y - lenth * Math.cos(angle),
+  }
+```
+
+让y加的是负的，也就是减去`lenth * Math.cos(angle)`

@@ -5,15 +5,22 @@ const ctx = $computed(() => el!.getContext('2d')!)
 const WIDTH = 500
 const HEIGHT = 500
 
-function init() {
-  ctx.strokeStyle = '#fff' // stghyle shouold on the top
-  Line(WIDTH / 2, HEIGHT, WIDTH / 2, HEIGHT / 2)
+interface Point {
+  x: number
+  y: number
 }
 
-function Line(x1: number, y1: number, x2: number, y2: number) {
+function init() {
+  ctx.strokeStyle = '#fff' // stghyle shouold on the top
+  const startPoint: Point = { x: WIDTH / 2, y: HEIGHT }
+  const endPoint: Point = { x: WIDTH / 2, y: HEIGHT / 2 }
+  Line(startPoint, endPoint)
+}
+
+function Line(p1: Point, p2: Point) {
   ctx.beginPath() // Start a new path
-  ctx.moveTo(x1, y1) // Move the pen to (30, 50)
-  ctx.lineTo(x2, y2) // Draw a line to (150, 100)
+  ctx.moveTo(p1.x, p1.y) // Move the pen to (x1, y1)
+  ctx.lineTo(p2.x, p2.y) // Draw a line to (x2, y2)
   ctx.stroke() // render the line
 }
 

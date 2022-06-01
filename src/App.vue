@@ -20,27 +20,29 @@ function init() {
   ctx.strokeStyle = '#fff'
   const b: Branch = {
     startPint: { x: WIDTH / 2, y: HEIGHT },
-    length: 100,
-    angle: Math.PI / 24,
+    length: 10,
+    angle: 0,
   }
-  drawBranch(b)
   step(b)
 }
 
 function step(preBranch: Branch) {
   const startPint: Point = getEndPoint(preBranch)
-  const leftBranch: Branch = {
-    startPint,
-    length: 100,
-    angle: preBranch.angle + 0.1,
+  drawBranch(preBranch)
+  if (Math.random() < 0.6) {
+    step({
+      startPint,
+      length: preBranch.length,
+      angle: preBranch.angle + 0.2,
+    })
   }
-  const rightBranch: Branch = {
-    startPint,
-    length: 100,
-    angle: preBranch.angle - 0.1,
+  if (Math.random() < 0.6) {
+    step({
+      startPint,
+      length: preBranch.length,
+      angle: preBranch.angle - 0.2,
+    })
   }
-  drawBranch(leftBranch)
-  drawBranch(rightBranch)
 }
 
 function drawLine(startPoint: Point, endPoint: Point) {

@@ -55,3 +55,5 @@ ctx.stroke() // render the line
 ```
 
 `<canvas>` element's origin on the top-left, and the x-axis is from top-left to top-rigth, the y-axis is from top-left to bottom-left.
+
+For canvas the tree's branch is from one point to another point, but actually the growing tree starts at the end of the previous branch, offsets an angle, and then grows to another location.

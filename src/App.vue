@@ -10,18 +10,36 @@ interface Point {
   y: number
 }
 
-function init() {
-  ctx.strokeStyle = '#fff' // stghyle shouold on the top
-  const startPoint: Point = { x: WIDTH / 2, y: HEIGHT }
-  const endPoint: Point = { x: WIDTH / 2, y: HEIGHT / 2 }
-  Line(startPoint, endPoint)
+interface Branch {
+  startPint: Point
+  lenth: number
+  angle: number
 }
 
-function Line(p1: Point, p2: Point) {
+function init() {
+  ctx.strokeStyle = '#fff' // stghyle shouold on the top
+  const b: Branch = {
+    startPint: { x: WIDTH / 2, y: HEIGHT },
+    lenth: 100,
+    angle: -Math.PI / 2,
+  }
+  stratAndEnd(b)
+}
+
+function growingBranch(p1: Point, p2: Point) {
   ctx.beginPath() // Start a new path
   ctx.moveTo(p1.x, p1.y) // Move the pen to (x1, y1)
   ctx.lineTo(p2.x, p2.y) // Draw a line to (x2, y2)
   ctx.stroke() // render the line
+}
+
+function stratAndEnd(b: Branch) {
+  const { startPint, lenth, angle } = b
+  const endPoint: Point = {
+    x: startPint.x + lenth * Math.cos(angle),
+    y: startPint.y + lenth * Math.sin(angle),
+  }
+  growingBranch(startPint, endPoint)
 }
 
 onMounted(() => {

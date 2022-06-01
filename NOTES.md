@@ -191,5 +191,32 @@ function step(preBranch: Branch) {
 }
 ```
 
-## 写动画
+## 递归变堆栈
+
+在JavaScript里，可以把一个闭包里的东西先收集起来，不马上执行
+
+```typescript
+const pendingTasks: Function[] = []
+
+function step(preBranch: Branch) {
+  const startPint: Point = getEndPoint(preBranch)
+  drawBranch(preBranch)
+  if (Math.random() < 0.6) {
+    pendingTasks.push(() => step({
+      startPint,
+      length: preBranch.length,
+      angle: preBranch.angle + 0.2,
+    }))
+  }
+  if (Math.random() < 0.6) {
+    pendingTasks.push(() => step({
+      startPint,
+      length: preBranch.length,
+      angle: preBranch.angle - 0.2,
+    }))
+  }
+}
+```
+
+把每一步都先拿到一个数组里，然后再一一释放。
 

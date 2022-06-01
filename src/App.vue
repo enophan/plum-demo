@@ -12,34 +12,53 @@ interface Point {
 
 interface Branch {
   startPint: Point
-  lenth: number
+  length: number
   angle: number
 }
 
 function init() {
-  ctx.strokeStyle = '#fff' // stghyle shouold on the top
+  ctx.strokeStyle = '#fff'
   const b: Branch = {
     startPint: { x: WIDTH / 2, y: HEIGHT },
-    lenth: 100,
-    angle: Math.PI / 6,
+    length: 100,
+    angle: Math.PI / 24,
   }
-  stratAndEnd(b)
+  drawBranch(b)
+  step(b)
 }
 
-function growingBranch(p1: Point, p2: Point) {
-  ctx.beginPath() // Start a new path
-  ctx.moveTo(p1.x, p1.y) // Move the pen to (x1, y1)
-  ctx.lineTo(p2.x, p2.y) // Draw a line to (x2, y2)
-  ctx.stroke() // render the line
+function step(preBranch: Branch) {
+  const startPint: Point = getEndPoint(preBranch)
+  const leftBranch: Branch = {
+    startPint,
+    length: 100,
+    angle: preBranch.angle + 0.1,
+  }
+  const rightBranch: Branch = {
+    startPint,
+    length: 100,
+    angle: preBranch.angle - 0.1,
+  }
+  drawBranch(leftBranch)
+  drawBranch(rightBranch)
 }
 
-function stratAndEnd(b: Branch) {
-  const { startPint, lenth, angle } = b
-  const endPoint: Point = {
-    x: startPint.x + lenth * Math.sin(angle),
-    y: startPint.y - lenth * Math.cos(angle),
+function drawLine(startPoint: Point, endPoint: Point) {
+  ctx.beginPath()
+  ctx.moveTo(startPoint.x, startPoint.y)
+  ctx.lineTo(endPoint.x, endPoint.y)
+  ctx.stroke()
+}
+
+function getEndPoint(branch: Branch): Point {
+  return {
+    x: branch.startPint.x + branch.length * Math.sin(branch.angle),
+    y: branch.startPint.y - branch.length * Math.cos(branch.angle),
   }
-  growingBranch(startPint, endPoint)
+}
+
+function drawBranch(barnch: Branch) {
+  drawLine(barnch.startPint, getEndPoint(barnch))
 }
 
 onMounted(() => {

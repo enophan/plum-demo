@@ -53,3 +53,5 @@ ctx.moveTo(30, 50) // Move the pen to (30, 50)
 ctx.lineTo(150, 100) // Draw a line to (150, 100)
 ctx.stroke() // render the line
 ```
+
+`<canvas>` element's origin on the top-left, and the x-axis is from top-left to top-rigth, the y-axis is from top-left to bottom-left.

@@ -162,7 +162,7 @@ function step(preBranch: Branch) {
 
 ```typescript
 function init() {
-  ctx.strokeStyle = '#fff'
+  ctx.strokeStyle = 'rgba(149, 165, 166,1.0)'
   const b: Branch = {
     startPint: { x: WIDTH / 2, y: HEIGHT },
     length: 10,
@@ -193,6 +193,8 @@ function step(preBranch: Branch) {
 
 ## 递归变堆栈
 
+现在有两个问题，第一，我们做的是生长树，生长树就要有生长的动画，现在是一下就出现的；第二，现在是一个递归，是深度优先的，就是说，其实最先深沉的不是最下面的，反而是最后一个，生长树应该是从上边长出来的
+
 在JavaScript里，可以把一个闭包里的东西先收集起来，不马上执行
 
 ```typescript
@@ -202,18 +204,10 @@ function step(preBranch: Branch) {
   const startPint: Point = getEndPoint(preBranch)
   drawBranch(preBranch)
   if (Math.random() < 0.6) {
-    pendingTasks.push(() => step({
-      startPint,
-      length: preBranch.length,
-      angle: preBranch.angle + 0.2,
-    }))
+    pendingTasks.push(() => step(...))
   }
   if (Math.random() < 0.6) {
-    pendingTasks.push(() => step({
-      startPint,
-      length: preBranch.length,
-      angle: preBranch.angle - 0.2,
-    }))
+    pendingTasks.push(() => step(...))
   }
 }
 ```

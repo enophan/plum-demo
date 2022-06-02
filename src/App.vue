@@ -1,7 +1,8 @@
 <script setup lang="ts">
 const el = $ref < HTMLCanvasElement > ()
 const ctx = $computed(() => el!.getContext('2d')!)
-// TODO加绿叶和花
+// TODO 加绿叶和花
+// TODO 解决树枝向下长的问题
 const WIDTH = 500
 const HEIGHT = 500
 
@@ -17,10 +18,10 @@ interface Branch {
 }
 
 function init() {
-  ctx.strokeStyle = '#fff'
+  ctx.strokeStyle = 'rgba(156,163,175,0.5)'
   const b: Branch = {
     startPint: { x: WIDTH / 2, y: HEIGHT },
-    length: 12,
+    length: 16,
     angle: 0,
   }
   step(b)
@@ -91,7 +92,7 @@ onMounted(() => {
 
 <template>
   <div flex="~" items-center justify-center>
-    <canvas ref="el" width="500" height="500" border m-100px />
+    <canvas ref="el" width="500" height="500" border="3 gray-400/50" m-100px />
   </div>
 </template>
 

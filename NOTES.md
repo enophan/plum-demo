@@ -214,4 +214,13 @@ function step(preBranch: Branch) {
 
 把每一步都先拿到一个数组里，然后再一一释放。
 
+```typescript
+function startFrame() {
+  requestAnimationFrame(() => {
+    frame()
+    startFrame()
+  })
+}
+```
 
+`requestAnimationFrame()`与`setInterval()`作用类似，但是不同之处在于，`setInterval()`是按照定死的时间执行的，`requestAnimationFrame()`会根据你的 FPS(Frames Per Second，每秒传输帧数)来，画完上一帧才会画下一帧。

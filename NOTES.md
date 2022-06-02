@@ -162,7 +162,7 @@ function step(preBranch: Branch) {
 
 ```typescript
 function init() {
-  ctx.strokeStyle = 'rgba(149, 165, 166,1.0)'
+  ctx.strokeStyle = 'rgba(156,163,175,0.5)'
   const b: Branch = {
     startPint: { x: WIDTH / 2, y: HEIGHT },
     length: 10,
@@ -195,7 +195,7 @@ function step(preBranch: Branch) {
 
 现在有两个问题，第一，我们做的是生长树，生长树就要有生长的动画，现在是一下就出现的；第二，现在是一个递归，是深度优先的，就是说，其实最先深沉的不是最下面的，反而是最后一个，生长树应该是从上边长出来的
 
-在JavaScript里，可以把一个闭包里的东西先收集起来，不马上执行
+在JavaScript里，可以把一个闭包里的东西先收集起来，不会马上执行，而是把闭包函数，这里的闭包函数是`step()`，把这些函数一个一个放进去。最后一个一个拿出来执行，执行的时候添加一个时间差，最终的效果就是生长树的效果。
 
 ```typescript
 const pendingTasks: Function[] = []
@@ -213,4 +213,5 @@ function step(preBranch: Branch) {
 ```
 
 把每一步都先拿到一个数组里，然后再一一释放。
+
 

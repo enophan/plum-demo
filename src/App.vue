@@ -21,7 +21,7 @@ function init() {
   ctx.strokeStyle = 'rgba(156,163,175,0.5)'
   const b: Branch = {
     startPint: { x: WIDTH / 2, y: HEIGHT },
-    length: 16,
+    length: 5,
     angle: 0,
   }
   step(b)
@@ -32,14 +32,14 @@ const pendingTasks: Function[] = []
 function step(preBranch: Branch, depth = 0) {
   const startPint: Point = getEndPoint(preBranch)
   drawBranch(preBranch)
-  if (depth < 3 || Math.random() < 0.5) {
+  if (depth < 4 || Math.random() < 0.5) {
     pendingTasks.push(() => step({
       startPint,
       length: preBranch.length + (Math.random() * 10 - 5),
       angle: preBranch.angle + (0.2 * Math.random()),
     }, depth + 1))
   }
-  if (depth < 3 || Math.random() < 0.5) {
+  if (depth < 4 || Math.random() < 0.5) {
     pendingTasks.push(() => step({
       startPint,
       length: preBranch.length + (Math.random() * 10 - 5),
@@ -64,7 +64,6 @@ function startFrame() {
     startFrame()
   })
 }
-
 startFrame()
 
 function drawLine(startPoint: Point, endPoint: Point) {

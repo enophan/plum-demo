@@ -18,7 +18,7 @@ the `<canvas>` element only has `width` and `height`, both of two attributes.
 
 The id attribute is not personal attribute of the `<canvas>` , it is one of the global HTML attributes and any HTML elements all can apply it.
 
-`getContext()`: this function is used to obtain the rendering context and drawing function of the `<canvas>` element.It takes one parameter, the type of context, like 2d and 3d.这个函数获取`<canvas>`的渲染内容和绘画功能。函数的参数是上下文类型，比如2d和3d。
+`getContext()`: this function is used to obtain the rendering context and drawing function of the `<canvas>` element. It takes one parameter, the type of context, like 2d and 3d.这个函数获取`<canvas>`的渲染内容和绘画功能。函数的参数是上下文类型，比如2d和3d。
 
 In js
 
@@ -65,6 +65,8 @@ interface Branch {
   angle: number
 }
 ```
+
+When I followed Anthony Fu to code, there is a point that's been bathering me, where is the `angle` actully. The `angle` is between the 
 
 在`Branch`里定义的`angle`在canvas里并不具体的表示某个夹角，只是一个参数而已。最终会加上`lenth * Math.sin(angle)`，当然也可以减去。具体看要从哪里生长这棵树，要是从底部生长，
 

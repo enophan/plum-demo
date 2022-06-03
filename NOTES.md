@@ -66,7 +66,9 @@ interface Branch {
 }
 ```
 
-When I followed Anthony Fu to code, there is a point that's been bathering me, where is the `angle` actully. The `angle` is between the 
+When I followed Anthony Fu to code, there is a point that's been bathering me, where is the `angle` actully. Is the `angle` between the x-axis and the branch or between the y-axis and the branch? I have no idea.
+
+Now I know that's stupid. Beacuse the angle is you defined, it could between the x-axis and the branch or between the y-axis and the branch, you just define it and note the change of symbols.
 
 在`Branch`里定义的`angle`在canvas里并不具体的表示某个夹角，只是一个参数而已。最终会加上`lenth * Math.sin(angle)`，当然也可以减去。具体看要从哪里生长这棵树，要是从底部生长，
 
